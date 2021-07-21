@@ -17,7 +17,7 @@ We also encourage you to:
 
 - Add some technical documentation to the docs folder. For example, a drawing of your data flow, a dependency graph,
   or a Markdown file describing your APIs.
-- Load the application data (brand/model) asynchronously 
+- Load the application data (brand/model) asynchronously
 
 You *don't* have to:
 
@@ -37,17 +37,17 @@ Please adhere to the following `ids` for identifying your inputs.
 |**S2**| Select input | `#S2` |
 | **T**| Text input  | `#T` |
 |**B** | Button input | `#B` |
- 
+
  ### Rules
 ```
  #S1 Should contain a list of available car brands.
- 
- When #S1 is empty: 
+
+ When #S1 is empty:
  #S2 should not contain any options.
- 
- When #S1 is filled in: 
+
+ When #S1 is filled in:
  #S2 should contain a list of available car models from the selected brand
- 
+
  When #S1, #S2 and #T are empty:
  #B should be disabled.
 

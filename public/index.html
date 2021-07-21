@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test - form dependancies</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+  <form class="form" action="/car_search" method="GET" data-component="CarSearchForm">
+    <fieldset>
+      <legend class="form-legend">Buy a car</legend>
+
+      <div class="form-item">
+        <label for="S1" class="label">Brand:</label>
+        <select name="brand" id="S1" class="select" data-component="ConnectedSelect" data-api="brands">
+          <option value selected>– All Brands –</option>
+        </select>
+      </div>
+
+      <div class="form-item">
+        <label for="S2" class="label">Model:</label>
+        <select name="model" id="S2" class="select" data-component="ConnectedSelect" data-api="models"
+          data-dependancy-id="brand" data-dependancy-title="– Select a brand first –"
+          data-default-title="– All Models –">
+          <option value selected>– Select a brand first –</option>
+        </select>
+      </div>
+
+      <div class="form-item">
+        <label for="T" class="label">Keywords:</label>
+        <input type="text" name="keyword" id="T" value="" class="input" autocomplete="off" />
+      </div>
+
+      <div class="form-button">
+        <button type="submit" id="B" class="button" disabled>Search Cars</button>
+      </div>
+    </fieldset>
+  </form>
+
+  <script src="./fakeData.js"></script>
+  <script src="./ConnectedSelect.js"></script>
+  <script src="./CarSearchForm.js"></script>
+  <script>
+    (function initComponents() {
+      const $$components = document.querySelectorAll('[data-component]')
+      $$components.forEach($component => {
+        const Component = window[$component.dataset.component]
+        if (typeof Component === "function") {
+          new Component($component)
+        }
+      })
+    })();
+  </script>
+</body>
+
+</html>
